@@ -172,18 +172,6 @@ Redirects the user to the original URL.
 - CORS Middleware
 - Frontend-Backend Communication using Fetch API
 
----
-
-## 📸 Screenshots
-
-Add screenshots of:
-
-- Homepage
-- Swagger UI
-- URL Shortening
-- Redirect Working
-
----
 
 ## 🔮 Future Improvements
 
