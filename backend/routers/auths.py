@@ -3,8 +3,8 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import User
-from schemas import UserCreate
-from auth import hash_password , verify_password , create_access_token
+from schemas import UserCreate , UserLogin, RefreshTokenRequest
+from auth import create_refresh_token, hash_password , verify_password , create_access_token , verify_token , get_current_user
 from schemas import UserLogin
 
 
@@ -84,9 +84,61 @@ def login(
     {
         "sub": db_user.email
     }
+
+)
+    refresh_token = create_refresh_token(
+    {
+        "sub": db_user.email
+    }
 )
 
     return {
     "access_token": access_token,
+    "refresh_token": refresh_token,
     "token_type": "bearer"
   }
+
+@router.post("/refresh")
+def refresh_token(
+    request: RefreshTokenRequest
+):
+
+    payload = verify_token(
+        request.refresh_token
+    )
+
+    if payload is None:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid refresh token"
+        )
+
+    if payload.get("type") != "refresh":
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid token type"
+        )
+
+    new_access_token = create_access_token(
+        {
+            "sub": payload["sub"]
+        }
+    )
+
+    return {
+        "access_token": new_access_token,
+        "token_type": "bearer"
+    }
+
+
+
+@router.get("/me")
+def get_profile(
+    current_user: User = Depends(get_current_user)
+):
+
+    return {
+        "id": current_user.id,
+        "username": current_user.username,
+        "email": current_user.email
+    }
