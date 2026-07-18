@@ -20,6 +20,9 @@ app.add_middleware(
     "https://urlshortener-frontend.onrender.com",
     "https://urlshortener-1-6alb.onrender.com"
 ],
+   allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Include all URL routes
