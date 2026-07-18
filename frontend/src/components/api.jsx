@@ -1,4 +1,6 @@
-const API_BASE = "http://localhost:8000";
+// Uses VITE_API_URL when set (e.g. in production on Render),
+// falls back to localhost for local dev.
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 // --- token storage --------------------------------------------------------
 // Your own YOKAI audit flagged JWT-in-localStorage as an XSS risk — same
