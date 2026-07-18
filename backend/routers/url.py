@@ -34,7 +34,7 @@ def shorten_url(
 
     return {
         "message": "Short URL created successfully",
-        "short_url": f"http://localhost:8000/{short_code}"
+        "short_url": f"https://urlshortener-k89g.onrender.com/{short_code}"
     }
 
 

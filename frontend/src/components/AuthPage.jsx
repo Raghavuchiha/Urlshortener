@@ -314,7 +314,7 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex bg-white">
-      <TerminalPanel />
+      {/* <TerminalPanel / >*/}
 
       <div className="flex-1 flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-sm">
