@@ -13,3 +13,4 @@ fastapi-mail
 email-validator
 SQLAlchemy==2.0.50
 fastapi[standard]
+psycopg2-binary
