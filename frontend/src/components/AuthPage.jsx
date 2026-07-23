@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link } from "react-router-dom";
 import { login, signup } from "./api";
 import {
   Mail,
@@ -271,9 +271,13 @@ function AuthForm({ mode, onSignupDone }) {
             <input type="checkbox" className="rounded border-neutral-300" />
             Remember me
           </label>
-          <a href="#" className="text-neutral-500 hover:text-neutral-900 underline underline-offset-2">
-            Forgot password?
-          </a>
+          <Link
+  to="/forgot-password"
+  className="text-neutral-500 hover:text-neutral-900 underline underline-offset-2"
+>
+  Forgot password?
+</Link>
+            
         </div>
       )}
 

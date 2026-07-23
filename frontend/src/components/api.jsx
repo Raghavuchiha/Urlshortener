@@ -107,3 +107,21 @@ export async function apiFetch(path, options = {}) {
 
   return handleResponse(res);
 }
+
+export async function forgotPassword({ email }) {
+  const res = await fetch(`${API_BASE}/forgot-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+  return handleResponse(res);
+}
+
+export async function resetPassword({ token, new_password }) {
+  const res = await fetch(`${API_BASE}/reset-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token, new_password }),
+  });
+  return handleResponse(res);
+}
