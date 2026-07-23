@@ -9,3 +9,5 @@ anyio==4.12.1
 asttokens==3.0.1
 attrs==25.4.0
 bcrypt==4.0.1
+fastapi-mail
+email-validator
