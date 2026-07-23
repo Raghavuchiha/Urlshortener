@@ -11,4 +11,5 @@ attrs==25.4.0
 bcrypt==4.0.1
 fastapi-mail
 email-validator
+SQLAlchemy==2.0.50
 fastapi[standard]
