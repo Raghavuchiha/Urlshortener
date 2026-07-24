@@ -10,7 +10,13 @@ from models import User, PasswordResetToken
 from schemas import UserCreate, UserLogin, RefreshTokenRequest, ForgotPasswordRequest, ResetPasswordRequest
 from auth import create_refresh_token, hash_password, verify_password, create_access_token, verify_token, get_current_user
 from utils import send_reset_email
+import os
+import secrets
+import hashlib
+from datetime import datetime, timedelta, timezone
 
+
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 router = APIRouter(
     tags=["Authentication"]
@@ -170,7 +176,7 @@ async def forgot_password(
         db.add(reset_token)
         db.commit()
 
-        reset_link = f"http://localhost:5173/reset-password?token={raw_token}"
+        reset_link = f"{FRONTEND_URL}/reset-password?token={raw_token}"
         await send_reset_email(user.email, reset_link)
 
     return {"message": "If that email exists, a reset link has been sent."}
